@@ -3,7 +3,7 @@ import boto3
 from botocore.exceptions import NoCredentialsError
 
 # Extract
-df = pd.read_csv('NYC_air_bnb_dataset.csv')
+df = pd.read_csv('data/NYC_air_bnb_dataset.csv')
 
 # Transform (for simplicity, just basic data type conversions)
 df['price'] = df['price'].str.replace('$', '').str.replace(',', '').astype(float)
