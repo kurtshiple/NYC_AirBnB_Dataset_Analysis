@@ -6,3 +6,7 @@ Dataset can be found here: https://www.kaggle.com/datasets/dgomonov/new-york-cit
 The csv version is within the repository.
 
 Folders are organized by technology being utilized most with the dataset.
+
+The Python demonstration 
+![Your GIF](https://github.com/kurtshiple/NYC_AirBnB_Dataset_Analysis/blob/main/Media/dashboard_demo.gif)
+
