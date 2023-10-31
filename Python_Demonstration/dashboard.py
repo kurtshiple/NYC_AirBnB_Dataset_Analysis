@@ -6,14 +6,15 @@ import folium
 from folium.plugins import MarkerCluster
 import plotly.express as px
 import pandas as pd
+import os
 
 # Load the dataset
-data = pd.read_csv('data/NYC_air_bnb_dataset.csv')
+data = pd.read_csv('../data/NYC_air_bnb_dataset.csv')
 
 app = dash.Dash(__name__)
 
 # Create a Folium map
-ny_map = folium.Map(location=[40.7128, -73.6060], zoom_start=12)
+ny_map = folium.Map(location=[40.7128, -73.9060], zoom_start=11)
 marker_cluster = MarkerCluster().add_to(ny_map)
 
 # Add markers for each listing
@@ -31,12 +32,26 @@ scatter_fig.update_traces(marker=dict(size=5))
 bar_fig = px.bar(data, x='room_type', y='price',color='room_type', title='Price by Room Type')
 
 
+# Get a list of image filenames in the folder
+image_files = [f for f in os.listdir('assets') if f.endswith('.png')]
+
+
 
 
 app.layout = html.Div([
+
+    html.H1("Dash App Dashboard w/ EDA Charts", style={'text-align': 'center'}),  # Header
+    html.H2("Map", style={'text-align': 'center'}),  # Header
     html.Iframe(srcDoc=ny_map._repr_html_(), width='100%', height='600'),
+    html.H2("Room Types", style={'text-align': 'center'}),  # Header
     dcc.Graph(figure=scatter_fig),
+    html.H2("Price By Room Type", style={'text-align': 'center'}),  # Header
     dcc.Graph(figure=bar_fig),
+    html.H2("Image Gallery", style={'text-align': 'center'}),
+    *[html.Div([
+        html.H2(image.split('.')[0], style={'text-align': 'center'}),  # Use the image name as the header
+        html.Img(src=app.get_asset_url(f'{image}'),style={'display': 'block', 'margin': '0 auto'}, width='80%')
+    ]) for image in image_files]
 ])
 
 if __name__ == '__main__':
