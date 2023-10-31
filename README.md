@@ -4,3 +4,5 @@ I employ a well-known dataset to showcase the possibilities it offers when appro
 Dataset can be found here: https://www.kaggle.com/datasets/dgomonov/new-york-city-airbnb-open-data/
 
 The csv version is within the repository.
+
+Folders are organized by technology being utilized most with the dataset.
